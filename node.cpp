@@ -49,4 +49,7 @@ void LinkedList<T>::Node::printList() {
 	if (next != nullptr) {
 		next->printList();
 	}
+	else {
+		cout << endl;
+	}
 }

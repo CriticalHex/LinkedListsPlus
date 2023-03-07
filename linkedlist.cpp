@@ -77,6 +77,75 @@ T LinkedList<T>::pop(int index) {
 
 
 template<typename T>
+void LinkedList<T>::append(T value) {
+	Node* end = root->findEnd();
+	end->next = new Node(value, nullptr, end);
+	len++;
+}
+
+
+template<typename T>
+void LinkedList<T>::remove(T value) {
+	if (root->val == value) {
+		root = root->next;
+		root->prev = nullptr;
+		return;
+	}
+	if (Node* found = root->findValue(value) != nullptr) {
+		Node* newPrev = found->prev;
+		Node* newNext = found->next;
+		if (newNext != nullptr) {
+			newNext->prev = newPrev;
+		}
+		newPrev->next = newNext;
+		return;
+	}
+	throw 0;
+}
+
+
+template<typename T>
+void LinkedList<T>::reverse() {
+	LinkedList newList = LinkedList(root->findEnd()->val);
+	for (int i = len - 2; i >= 0; i--) {
+		newList.append(root->findIndex(i)->val);
+	}
+	this = newList;
+}
+
+
+template<typename T>
 LinkedList<T>::Node* LinkedList<T>::getIndex(int index) {
 	root->findIndex(index);
+}
+
+
+template<typename T>
+void LinkedList<T>::fullSwap() {
+	root->findIndex(index);
+	for (int i = 0; i < len; i += 2) {
+		if (i + 1 < len) {
+			swapNodes(getIndex(i), getIndex(i + 1));
+		}
+	}
+}
+
+
+template<typename T>
+void LinkedList<T>::swapNodes(Node* node1, Node* node2) {
+	Node* node1Prev = node1->prev;
+	Node* node2Next = node2->next;
+	node2->prev = node1Prev;
+	node2->next = node1;
+	node1->prev = node2;
+	node1->next = node2Next;
+	if (node1Prev != nullptr) {
+		node1Prev->next = node2;
+	}
+	else {
+		root = node2;
+	}
+	if (node2Next != nullptr) {
+		node2Next->prev = node1;
+	}
 }
