@@ -1,5 +1,5 @@
 #include"linkedlist.h"
-#include"node.cpp"
+#include"node.h"
 #include<stdexcept>
 
 using namespace std;
@@ -116,13 +116,12 @@ void LinkedList<T>::reverse() {
 
 template<typename T>
 LinkedList<T>::Node* LinkedList<T>::getIndex(int index) {
-	root->findIndex(index);
+	return root->findIndex(index);
 }
 
 
 template<typename T>
 void LinkedList<T>::fullSwap() {
-	root->findIndex(index);
 	for (int i = 0; i < len; i += 2) {
 		if (i + 1 < len) {
 			swapNodes(getIndex(i), getIndex(i + 1));
