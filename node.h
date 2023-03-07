@@ -1,15 +1,15 @@
 #pragma once
 #include"linkedlist.h"
 
-template<typename T>
+template<typename T> template<typename S>
 class LinkedList<T>::Node {
 public:
 	Node* findIndex(int index);
-	Node* findValue(T value);
+	Node* findValue(S value);
 	Node* findEnd();
 	void printList();
-	Node(T value, Node* next_node = nullptr, Node* prev_node = nullptr);
-	T val;
+	Node(S value, Node* next_node = nullptr, Node* prev_node = nullptr);
+	S val;
 	Node* next;
 	Node* prev;
 };

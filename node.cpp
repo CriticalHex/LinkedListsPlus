@@ -3,16 +3,16 @@
 
 using namespace std;
 
-template<typename T>
-LinkedList<T>::Node::Node(T value, Node* next_node, Node* prev_node) {
+template<typename T> template<typename S>
+LinkedList<T>::Node<S>::Node(S value, LinkedList<T>::Node<S>* next_node, LinkedList<T>::Node<S>* prev_node) {
 	val = value;
 	next = next_node;
 	prev = prev_node;
 }
 
 
-template<typename T>
-LinkedList<T>::Node* LinkedList<T>::Node::findIndex(int index) {
+template<typename T> template<typename S>
+LinkedList<T>::Node<S>* LinkedList<T>::Node<S>::findIndex(int index) {
 	if (index == 0) {
 		return this;
 	}
@@ -23,8 +23,8 @@ LinkedList<T>::Node* LinkedList<T>::Node::findIndex(int index) {
 }
 
 
-template<typename T>
-LinkedList<T>::Node* LinkedList<T>::Node::findValue(T value) {
+template<typename T> template<typename S>
+LinkedList<T>::Node<S>* LinkedList<T>::Node<S>::findValue(S value) {
 	if (val == value) {
 		return this;
 	}
@@ -34,8 +34,8 @@ LinkedList<T>::Node* LinkedList<T>::Node::findValue(T value) {
 }
 
 
-template<typename T>
-LinkedList<T>::Node* LinkedList<T>::Node::findEnd() {
+template<typename T> template<typename S>
+LinkedList<T>::Node<S>* LinkedList<T>::Node<S>::findEnd() {
 	if (next != nullptr) {
 		return next->findEnd();
 	}
@@ -43,8 +43,8 @@ LinkedList<T>::Node* LinkedList<T>::Node::findEnd() {
 }
 
 
-template<typename T>
-void LinkedList<T>::Node::printList() {
+template<typename T> template<typename S>
+void LinkedList<T>::Node<S>::printList() {
 	cout << val << " ";
 	if (next != nullptr) {
 		next->printList();

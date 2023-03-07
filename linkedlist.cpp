@@ -114,8 +114,8 @@ void LinkedList<T>::reverse() {
 }
 
 
-template<typename T>
-LinkedList<T>::Node* LinkedList<T>::getIndex(int index) {
+template<typename T> template<typename S>
+LinkedList<T>::Node<S>* LinkedList<T>::getIndex<T>(int index) {
 	return root->findIndex(index);
 }
 
